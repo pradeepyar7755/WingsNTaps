@@ -1,0 +1,412 @@
+/* ===== MENU PAGE STYLES ===== */
+/* Inspired by Twin Peaks menu: wood-grain background, 3-column grid, featured items */
+
+.menu-page {
+    background: var(--bg-dark);
+}
+
+/* ===== MENU HERO ===== */
+.menu-hero {
+    position: relative;
+    height: 60vh;
+    min-height: 420px;
+    max-height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: hidden;
+    margin-top: calc(32px + 70px);
+}
+
+.menu-hero-bg {
+    position: absolute;
+    inset: 0;
+}
+
+.menu-hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.35) saturate(1.2);
+}
+
+.menu-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to right,
+            rgba(15, 15, 15, 0.85) 0%,
+            rgba(15, 15, 15, 0.4) 60%,
+            rgba(15, 15, 15, 0.2) 100%);
+}
+
+.menu-hero-content {
+    position: relative;
+    z-index: 1;
+    padding: 3rem 4rem;
+    max-width: 700px;
+}
+
+.menu-hero-title {
+    font-family: var(--font-stencil);
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    line-height: 1.2;
+    color: var(--text-white);
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
+}
+
+.btn-accent {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-condensed);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.85rem 2rem;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    background: var(--accent);
+    color: white;
+    text-decoration: none;
+    transition: all var(--transition-smooth);
+    box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.btn-accent:hover {
+    background: #c7163e;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(225, 29, 72, 0.35);
+}
+
+/* ===== STICKY CATEGORY NAV ===== */
+.menu-cats-bar {
+    position: sticky;
+    top: calc(32px + 70px);
+    z-index: 500;
+    background: rgba(30, 24, 20, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 3px solid var(--wood-brown);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.menu-cats-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.menu-cats-inner::-webkit-scrollbar {
+    display: none;
+}
+
+.menu-cat-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-md);
+    text-decoration: none;
+    transition: all var(--transition-smooth);
+    flex-shrink: 0;
+}
+
+.menu-cat-link:hover,
+.menu-cat-link.active {
+    background: rgba(244, 175, 37, 0.1);
+}
+
+.menu-cat-link.active {
+    border-bottom: 2px solid var(--primary);
+}
+
+.menu-cat-icon {
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--border-subtle);
+    transition: all var(--transition-smooth);
+}
+
+.menu-cat-link:hover .menu-cat-icon,
+.menu-cat-link.active .menu-cat-icon {
+    border-color: var(--primary);
+    box-shadow: 0 0 15px var(--primary-glow);
+}
+
+.menu-cat-link span {
+    font-family: var(--font-condensed);
+    font-weight: 900;
+    font-size: 0.9rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: color var(--transition-fast);
+}
+
+.menu-cat-link:hover span,
+.menu-cat-link.active span {
+    color: var(--text-white);
+}
+
+/* ===== MENU BODY ===== */
+.menu-body {
+    /* Wood grain background inspired by Twin Peaks */
+    background:
+        linear-gradient(rgba(30, 24, 20, 0.92), rgba(30, 24, 20, 0.92)),
+        url('https://www.transparenttextures.com/patterns/dark-wood.png');
+    background-color: #1e1814;
+}
+
+/* ===== SECTION BLOCKS ===== */
+.menu-section-block {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem 3rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.menu-section-block:last-child {
+    border-bottom: none;
+}
+
+.menu-section-title {
+    font-family: var(--font-stencil);
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    text-align: center;
+    color: var(--text-white);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+.menu-section-subtitle {
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
+}
+
+/* ===== FEATURED ITEM (Twin Peaks style) ===== */
+.menu-featured-item {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+    padding: 1rem;
+}
+
+.menu-featured-img-wrap {
+    width: 400px;
+    height: 400px;
+    flex-shrink: 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 4px solid var(--wood-brown);
+    box-shadow: 8px 8px 25px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.menu-featured-img-wrap::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border: 2px solid rgba(255, 255, 255, 0.06);
+    border-radius: calc(var(--radius-md) - 4px);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.menu-featured-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.menu-featured-item:hover .menu-featured-img-wrap img {
+    transform: scale(1.08);
+}
+
+.menu-featured-info h3 {
+    font-family: var(--font-condensed);
+    font-weight: 900;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    text-transform: uppercase;
+    color: var(--text-white);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+}
+
+.menu-item-desc {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+.menu-item-tag {
+    display: inline-block;
+    margin-top: 0.75rem;
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--primary);
+    border: 1px solid var(--border-gold);
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    background: rgba(244, 175, 37, 0.08);
+}
+
+/* ===== 3-COLUMN ITEMS GRID (Twin Peaks style) ===== */
+.menu-items-3col {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.menu-item-block h4 {
+    font-family: var(--font-condensed);
+    font-weight: 900;
+    font-size: 1.15rem;
+    text-transform: uppercase;
+    color: var(--text-white);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.5rem;
+}
+
+.menu-item-block p {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.menu-item-highlight {
+    position: relative;
+}
+
+.menu-item-highlight h4 {
+    color: var(--accent);
+}
+
+.item-badge-hot {
+    font-size: 0.9rem;
+}
+
+/* ===== WING BUILDER ===== */
+.menu-wing-builder {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 2.5rem;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-subtle);
+}
+
+.wing-builder-col h4 {
+    font-family: var(--font-condensed);
+    font-weight: 900;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--primary);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.wing-builder-col h4 i {
+    font-size: 0.9rem;
+}
+
+.wing-builder-col ul {
+    list-style: none;
+}
+
+.wing-builder-col li {
+    font-size: 1rem;
+    color: var(--text-light);
+    padding: 0.35rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.wing-builder-col li:last-child {
+    border-bottom: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .menu-items-3col {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+
+    .menu-wing-builder {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .menu-featured-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+
+    .menu-featured-img-wrap {
+        width: 300px;
+        height: 300px;
+        margin: 0 auto;
+    }
+
+    .menu-hero-content {
+        padding: 2rem;
+        text-align: center;
+    }
+
+    .menu-hero-overlay {
+        background: linear-gradient(to bottom,
+                rgba(15, 15, 15, 0.6) 0%,
+                rgba(15, 15, 15, 0.85) 100%);
+    }
+
+    .menu-hero {
+        align-items: flex-end;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .menu-items-3col {
+        grid-template-columns: 1fr;
+    }
+
+    .menu-cat-icon {
+        width: 80px;
+        height: 80px;
+    }
+
+    .menu-cat-link {
+        padding: 0.4rem 0.6rem;
+    }
+
+    .menu-cat-link span {
+        font-size: 0.6rem;
+    }
+}
