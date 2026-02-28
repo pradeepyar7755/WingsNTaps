@@ -136,17 +136,44 @@ function initMenuCategoryNav() {
   }, { passive: true });
 }
 
+// ===== WEB3FORMS CONFIG =====
+const WEB3FORMS_KEY = 'd16d7750-50b8-4825-8179-158964fa65ee';
+
 // ===== FORMS =====
 function initForms() {
   // Notify form
   const notifyForm = document.getElementById('notify-form');
   if (notifyForm) {
-    notifyForm.addEventListener('submit', (e) => {
+    notifyForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const email = document.getElementById('notify-email');
-      if (email && email.value) {
-        showFormSuccess(notifyForm, "You're on the list! 🔥 We'll keep you posted.");
+      const submitBtn = notifyForm.querySelector('button[type="submit"]');
+      if (!email || !email.value) return;
+
+      setButtonLoading(submitBtn, true);
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_KEY,
+            subject: '🔔 New Email Subscriber — Wings N Taps',
+            from_name: 'Wings N Taps Website',
+            email: email.value,
+            message: `New subscriber wants to be notified when Wings N Taps opens!\n\nEmail: ${email.value}`,
+          }),
+        });
+
+        const data = await res.json();
+        if (!data.success) throw new Error('Request failed');
+
+        showFormMessage(notifyForm, "You're on the list! 🔥 We'll keep you posted.", 'success');
         email.value = '';
+      } catch (err) {
+        showFormMessage(notifyForm, "Something went wrong. Please try again.", 'error');
+      } finally {
+        setButtonLoading(submitBtn, false);
       }
     });
   }
@@ -154,26 +181,85 @@ function initForms() {
   // Contact form
   const contactForm = document.getElementById('contact-form');
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      showFormSuccess(contactForm, "Message sent! We'll get back to you soon. 🍗");
-      contactForm.reset();
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+      const subjectLabels = {
+        general: 'General Question',
+        events: 'Private Events / Catering',
+        feedback: 'Feedback',
+        careers: 'Careers',
+        other: 'Other',
+      };
+
+      const name = document.getElementById('contact-name')?.value;
+      const email = document.getElementById('contact-email')?.value;
+      const phone = document.getElementById('contact-phone-input')?.value || '';
+      const subjectVal = document.getElementById('contact-subject')?.value;
+      const message = document.getElementById('contact-message')?.value;
+      const subjectLabel = subjectLabels[subjectVal] || subjectVal;
+
+      if (!name || !email || !subjectVal || !message) return;
+
+      setButtonLoading(submitBtn, true);
+
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_KEY,
+            subject: `📩 Contact Form: ${subjectLabel} — from ${name}`,
+            from_name: name,
+            email: email,
+            phone: phone,
+            topic: subjectLabel,
+            message: message,
+          }),
+        });
+
+        const data = await res.json();
+        if (!data.success) throw new Error('Request failed');
+
+        showFormMessage(contactForm, "Message sent! We'll get back to you soon. 🍗", 'success');
+        contactForm.reset();
+      } catch (err) {
+        showFormMessage(contactForm, "Something went wrong. Please try again.", 'error');
+      } finally {
+        setButtonLoading(submitBtn, false);
+      }
     });
   }
 }
 
-function showFormSuccess(form, message) {
-  // Remove any existing success message
-  const existing = form.querySelector('.form-success');
+function setButtonLoading(btn, loading) {
+  if (!btn) return;
+  if (loading) {
+    btn.dataset.originalText = btn.innerHTML;
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+    btn.disabled = true;
+    btn.style.opacity = '0.7';
+  } else {
+    btn.innerHTML = btn.dataset.originalText || btn.innerHTML;
+    btn.disabled = false;
+    btn.style.opacity = '1';
+  }
+}
+
+function showFormMessage(form, message, type) {
+  // Remove any existing message
+  const existing = form.querySelector('.form-success, .form-error');
   if (existing) existing.remove();
 
-  const successEl = document.createElement('div');
-  successEl.className = 'form-success';
-  successEl.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
-  successEl.style.cssText = `
-    background: rgba(34, 197, 94, 0.1);
-    border: 1px solid rgba(34, 197, 94, 0.3);
-    color: #22c55e;
+  const isError = type === 'error';
+  const msgEl = document.createElement('div');
+  msgEl.className = isError ? 'form-error' : 'form-success';
+  msgEl.innerHTML = `<i class="fas fa-${isError ? 'exclamation-circle' : 'check-circle'}"></i> ${message}`;
+  msgEl.style.cssText = `
+    background: ${isError ? 'rgba(239, 68, 68, 0.1)' : 'rgba(34, 197, 94, 0.1)'};
+    border: 1px solid ${isError ? 'rgba(239, 68, 68, 0.3)' : 'rgba(34, 197, 94, 0.3)'};
+    color: ${isError ? '#ef4444' : '#22c55e'};
     padding: 1rem 1.5rem;
     border-radius: 12px;
     font-size: 0.9rem;
@@ -183,13 +269,13 @@ function showFormSuccess(form, message) {
     gap: 0.5rem;
     animation: fadeInUp 0.4s ease-out;
   `;
-  form.appendChild(successEl);
+  form.appendChild(msgEl);
 
   setTimeout(() => {
-    successEl.style.opacity = '0';
-    successEl.style.transition = 'opacity 0.3s ease';
-    setTimeout(() => successEl.remove(), 300);
-  }, 4000);
+    msgEl.style.opacity = '0';
+    msgEl.style.transition = 'opacity 0.3s ease';
+    setTimeout(() => msgEl.remove(), 300);
+  }, 5000);
 }
 
 // ===== SMOOTH SCROLL FOR ANCHOR LINKS =====
