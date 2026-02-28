@@ -392,7 +392,7 @@ img {
 
 .hero-line {
   font-family: var(--font-stencil);
-  font-size: clamp(3rem, 10vw, 7rem);
+  font-size: clamp(2rem, 7vw, 4.5rem);
   line-height: 1;
   letter-spacing: 0.05em;
   text-shadow: 0 0 60px rgba(244, 175, 37, 0.15);
