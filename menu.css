@@ -158,6 +158,59 @@
     pointer-events: none;
 }
 
+/* ===== WINGS TABLE ===== */
+.wings-table {
+    margin-bottom: 2.5rem;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+}
+
+.wings-table-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: rgba(244, 175, 37, 0.12);
+    border-bottom: 2px solid var(--border-gold);
+}
+
+.wings-col-head {
+    font-family: var(--font-condensed);
+    font-weight: 900;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--primary);
+    padding: 1rem 1.5rem;
+    text-align: center;
+}
+
+.wings-table-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.wings-table-row:last-child {
+    border-bottom: none;
+}
+
+.wings-col {
+    font-family: var(--font-condensed);
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-light);
+    padding: 0.85rem 1.5rem;
+    text-align: center;
+    transition: all var(--transition-smooth);
+}
+
+.wings-table-row:hover .wings-col {
+    background: rgba(244, 175, 37, 0.05);
+    color: var(--text-white);
+}
+
 /* ===== SUBSECTION TITLES ===== */
 .menu-subsection-title {
     font-family: var(--font-condensed);
