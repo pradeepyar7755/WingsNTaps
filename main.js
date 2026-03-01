@@ -89,6 +89,34 @@ function initMenuCategoryNav() {
   const catLinks = catBar.querySelectorAll('.menu-cat-link');
   const sections = [];
 
+  // Arrow navigation
+  const catsInner = document.getElementById('menu-cats-inner');
+  const arrowLeft = document.getElementById('cats-arrow-left');
+  const arrowRight = document.getElementById('cats-arrow-right');
+
+  if (catsInner && arrowLeft && arrowRight) {
+    const scrollAmount = 300;
+
+    arrowLeft.addEventListener('click', () => {
+      catsInner.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+    });
+
+    arrowRight.addEventListener('click', () => {
+      catsInner.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    });
+
+    function updateArrows() {
+      const { scrollLeft, scrollWidth, clientWidth } = catsInner;
+      arrowLeft.classList.toggle('hidden', scrollLeft <= 5);
+      arrowRight.classList.toggle('hidden', scrollLeft + clientWidth >= scrollWidth - 5);
+    }
+
+    catsInner.addEventListener('scroll', updateArrows, { passive: true });
+    window.addEventListener('resize', updateArrows);
+    // Initial check
+    setTimeout(updateArrows, 100);
+  }
+
   catLinks.forEach(link => {
     const targetId = link.getAttribute('href').replace('#', '');
     const section = document.getElementById(targetId);

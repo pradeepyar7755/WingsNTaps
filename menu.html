@@ -65,47 +65,55 @@
 
     <!-- STICKY CATEGORY NAV -->
     <div class="menu-cats-bar" id="menu-cats-bar">
-        <div class="menu-cats-inner">
-            <a href="#sec-appetizers" class="menu-cat-link active" data-cat="appetizers">
-                <img src="/images/fried-pickles.png" alt="Appetizers" class="menu-cat-icon" />
-                <span>BITES</span>
-            </a>
-            <a href="#sec-wings" class="menu-cat-link" data-cat="wings">
-                <img src="/images/hero-wings.png" alt="Wings" class="menu-cat-icon" />
-                <span>WINGS</span>
-            </a>
-            <a href="#sec-tenders" class="menu-cat-link" data-cat="tenders">
-                <img src="/images/chicken-tenders.png" alt="Tenders" class="menu-cat-icon" />
-                <span>TENDERS</span>
-            </a>
-            <a href="#sec-sandwiches" class="menu-cat-link" data-cat="sandwiches">
-                <img src="/images/smash-burger.png" alt="Sandwiches" class="menu-cat-icon" />
-                <span>SANDWICHES</span>
-            </a>
-            <a href="#sec-tacos" class="menu-cat-link" data-cat="tacos">
-                <img src="/images/mini-tacos.png" alt="Tacos" class="menu-cat-icon" />
-                <span>TACOS</span>
-            </a>
-            <a href="#sec-beer" class="menu-cat-link" data-cat="beer">
-                <img src="/images/craft-beers.png" alt="Beer" class="menu-cat-icon" />
-                <span>BEER</span>
-            </a>
-            <a href="#sec-cocktails" class="menu-cat-link" data-cat="cocktails">
-                <img src="/images/cocktails.png" alt="Cocktails" class="menu-cat-icon" />
-                <span>COCKTAILS</span>
-            </a>
-            <a href="#sec-salads" class="menu-cat-link" data-cat="salads">
-                <img src="/images/fresh-salad.png" alt="Salads" class="menu-cat-icon" />
-                <span>SALADS</span>
-            </a>
-            <a href="#sec-kids" class="menu-cat-link" data-cat="kids">
-                <img src="/images/kids-meal.png" alt="Kids" class="menu-cat-icon" />
-                <span>KIDS</span>
-            </a>
-            <a href="#sec-desserts" class="menu-cat-link" data-cat="desserts">
-                <img src="/images/dessert.png" alt="Desserts" class="menu-cat-icon" />
-                <span>DESSERTS</span>
-            </a>
+        <div class="menu-cats-wrapper">
+            <button class="menu-cats-arrow arrow-left hidden" id="cats-arrow-left" aria-label="Scroll left">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="menu-cats-inner" id="menu-cats-inner">
+                <a href="#sec-appetizers" class="menu-cat-link active" data-cat="appetizers">
+                    <img src="/images/fried-pickles.png" alt="Appetizers" class="menu-cat-icon" />
+                    <span>BITES</span>
+                </a>
+                <a href="#sec-wings" class="menu-cat-link" data-cat="wings">
+                    <img src="/images/hero-wings.png" alt="Wings" class="menu-cat-icon" />
+                    <span>WINGS</span>
+                </a>
+                <a href="#sec-tenders" class="menu-cat-link" data-cat="tenders">
+                    <img src="/images/chicken-tenders.png" alt="Tenders" class="menu-cat-icon" />
+                    <span>TENDERS</span>
+                </a>
+                <a href="#sec-sandwiches" class="menu-cat-link" data-cat="sandwiches">
+                    <img src="/images/smash-burger.png" alt="Sandwiches" class="menu-cat-icon" />
+                    <span>SANDWICHES</span>
+                </a>
+                <a href="#sec-tacos" class="menu-cat-link" data-cat="tacos">
+                    <img src="/images/mini-tacos.png" alt="Tacos" class="menu-cat-icon" />
+                    <span>TACOS</span>
+                </a>
+                <a href="#sec-beer" class="menu-cat-link" data-cat="beer">
+                    <img src="/images/craft-beers.png" alt="Beer" class="menu-cat-icon" />
+                    <span>BEER</span>
+                </a>
+                <a href="#sec-cocktails" class="menu-cat-link" data-cat="cocktails">
+                    <img src="/images/cocktails.png" alt="Cocktails" class="menu-cat-icon" />
+                    <span>COCKTAILS</span>
+                </a>
+                <a href="#sec-salads" class="menu-cat-link" data-cat="salads">
+                    <img src="/images/fresh-salad.png" alt="Salads" class="menu-cat-icon" />
+                    <span>SALADS</span>
+                </a>
+                <a href="#sec-kids" class="menu-cat-link" data-cat="kids">
+                    <img src="/images/kids-meal.png" alt="Kids" class="menu-cat-icon" />
+                    <span>KIDS</span>
+                </a>
+                <a href="#sec-desserts" class="menu-cat-link" data-cat="desserts">
+                    <img src="/images/dessert.png" alt="Desserts" class="menu-cat-icon" />
+                    <span>DESSERTS</span>
+                </a>
+            </div>
+            <button class="menu-cats-arrow arrow-right" id="cats-arrow-right" aria-label="Scroll right">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
     </div>
 
@@ -351,46 +359,94 @@
             </div>
         </section>
 
-        <!-- ===== BEER ===== -->
+        <!-- ===== ON TAP ===== -->
         <section id="sec-beer" class="menu-section-block">
             <h2 class="menu-section-title">ON TAP</h2>
-            <p class="menu-section-subtitle">Ice-cold. Local. Texas proud.</p>
+            <p class="menu-section-subtitle">21 taps. Ice-cold at 29°. Local Texas craft and beyond.</p>
 
             <div class="menu-featured-item">
                 <div class="menu-featured-img-wrap">
                     <img src="/images/craft-beers.png" alt="Craft beers on tap" />
                 </div>
                 <div class="menu-featured-info">
-                    <h3>TEXAS CRAFT SELECTION</h3>
-                    <p class="menu-item-desc">local Texas craft brews · served ice-cold at 29° · rotating seasonal taps
-                    </p>
+                    <h3>21 TAPS ON THE WALL</h3>
+                    <p class="menu-item-desc">from local Corpus Christi breweries to Texas legends · served ice-cold at
+                        29° · rotating seasonal taps</p>
+                    <span class="menu-item-tag">Always Rotating</span>
                 </div>
             </div>
 
+            <div class="taps-grid">
+                <div class="tap-item">Saloon Door Tasty AF</div>
+                <div class="tap-item">Saloon Door Doc Hoppiday</div>
+                <div class="tap-item">Saloon Door Krispyy Boyy</div>
+                <div class="tap-item">Saloon Door Smooth Operator</div>
+                <div class="tap-item">Drekker Blue Rasp Sour</div>
+                <div class="tap-item">Drekker Cuddle Buddy IPA</div>
+                <div class="tap-item">City Orchard Cider</div>
+                <div class="tap-item">3-Nations Texian</div>
+                <div class="tap-item">Galveston Bay Blueberry Blonde</div>
+                <div class="tap-item">St. Arnold Art Car IPA</div>
+                <div class="tap-item">Karbach Crawford Bock</div>
+                <div class="tap-item">Karbach Love Street</div>
+                <div class="tap-item">Karbach Hopadillo</div>
+                <div class="tap-item">Kona Big Wave</div>
+                <div class="tap-item">Nueces Supremo</div>
+                <div class="tap-item">Nueces O.G.</div>
+                <div class="tap-item">Nueces Citra Matic</div>
+                <div class="tap-item">Nueces Seasonal</div>
+                <div class="tap-item">Lazy Beach CC Blonde</div>
+                <div class="tap-item">Lazy Beach Low Tide</div>
+                <div class="tap-item">Lazy Beach Choppy Waters</div>
+            </div>
+        </section>
+
+        <!-- ===== BEER ===== -->
+        <section class="menu-section-block">
+            <h2 class="menu-section-title">BEER</h2>
+            <p class="menu-section-subtitle">Domestic favorites and imports. Bottles and cans.</p>
+
             <div class="menu-items-3col">
                 <div class="menu-item-block">
-                    <h4>LONE STAR DRAFT</h4>
-                    <p>the national beer of Texas · crisp · cold · classic</p>
-                </div>
-                <div class="menu-item-block">
-                    <h4>SHINER BOCK</h4>
-                    <p>smooth amber lager · Texas tradition since 1909</p>
-                </div>
-                <div class="menu-item-block">
-                    <h4>ALAMO AMBER LAGER</h4>
-                    <p>rich amber · malty sweetness · smooth finish</p>
-                </div>
-                <div class="menu-item-block">
-                    <h4>HOPPY SOUTH IPA</h4>
-                    <p>bold · hoppy · bursting with citrus notes</p>
-                </div>
-                <div class="menu-item-block">
                     <h4>DOMESTIC BOTTLES</h4>
-                    <p>bud light · miller lite · coors light · michelob ultra</p>
+                    <p>Bud Light · Miller Lite · Coors Light · Michelob Ultra · Budweiser</p>
                 </div>
                 <div class="menu-item-block">
                     <h4>IMPORT BOTTLES</h4>
-                    <p>corona · modelo · dos equis · heineken · pacifico</p>
+                    <p>Corona · Modelo · Dos Equis · Heineken · Pacifico</p>
+                </div>
+                <div class="menu-item-block">
+                    <h4>TEXAS CRAFT</h4>
+                    <p>rotating local selections · ask your server for what's in stock</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SELTZERS & FLAVORED BEVERAGES ===== -->
+        <section class="menu-section-block">
+            <h2 class="menu-section-title">SELTZERS & FLAVORED</h2>
+            <p class="menu-section-subtitle">Light, refreshing, and always ice-cold.</p>
+
+            <div class="menu-items-3col">
+                <div class="menu-item-block">
+                    <h4>WHITE CLAW</h4>
+                    <p>assorted hard seltzers · light · crisp · refreshing</p>
+                </div>
+                <div class="menu-item-block">
+                    <h4>TRULY</h4>
+                    <p>fruit-flavored hard seltzers · variety of flavors</p>
+                </div>
+                <div class="menu-item-block">
+                    <h4>TWISTED TEA</h4>
+                    <p>hard iced tea · smooth · refreshing · original and flavors</p>
+                </div>
+                <div class="menu-item-block">
+                    <h4>SMIRNOFF ICE</h4>
+                    <p>classic malt beverage · sweet · crisp · ice-cold</p>
+                </div>
+                <div class="menu-item-block">
+                    <h4>MIKE'S HARD</h4>
+                    <p>hard lemonade · original · variety of fruit flavors</p>
                 </div>
             </div>
         </section>
