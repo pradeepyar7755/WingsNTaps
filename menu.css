@@ -158,6 +158,21 @@
     pointer-events: none;
 }
 
+/* ===== SUBSECTION TITLES ===== */
+.menu-subsection-title {
+    font-family: var(--font-condensed);
+    font-weight: 900;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--primary);
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--border-gold);
+    display: inline-block;
+}
+
 /* ===== TAPS GRID ===== */
 .taps-grid {
     display: grid;
