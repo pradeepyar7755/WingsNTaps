@@ -116,7 +116,9 @@ function initMenuCategoryNav() {
 
   // Scroll spy
   window.addEventListener('scroll', () => {
-    const scrollPos = window.scrollY + 200;
+    const navHeight = document.getElementById('navbar')?.offsetHeight || 70;
+    const barHeight = catBar.offsetHeight || 0;
+    const scrollPos = window.scrollY + navHeight + barHeight + 60;
     let activeFound = false;
 
     for (let i = sections.length - 1; i >= 0; i--) {

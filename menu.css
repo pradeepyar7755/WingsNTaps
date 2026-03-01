@@ -102,11 +102,26 @@
     padding: 0.75rem 1rem;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    scrollbar-width: thin;
+    scrollbar-color: var(--wood-brown) rgba(0, 0, 0, 0.2);
 }
 
 .menu-cats-inner::-webkit-scrollbar {
-    display: none;
+    height: 6px;
+}
+
+.menu-cats-inner::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+}
+
+.menu-cats-inner::-webkit-scrollbar-thumb {
+    background: var(--wood-brown);
+    border-radius: 3px;
+}
+
+.menu-cats-inner::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
 }
 
 .menu-cat-link {
