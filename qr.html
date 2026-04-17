@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu QR Codes | Wings N Taps</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" type="image/gif" href="/images/logo.gif" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Permanent+Marker&family=Barlow+Condensed:ital,wght@0,400;0,700;0,900;1,900&family=Rubik+Mono+One&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/style.css" />
+    <style>
+        .qr-page {
+            padding: 6rem 1.5rem 4rem;
+            min-height: 100vh;
+            background: var(--bg-dark);
+        }
+
+        .qr-header {
+            max-width: 1200px;
+            margin: 0 auto 2.5rem;
+            text-align: center;
+        }
+
+        .qr-header h1 {
+            font-family: var(--font-stencil);
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: var(--primary);
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+        }
+
+        .qr-header p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 620px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .qr-controls {
+            display: flex;
+            gap: 0.75rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        .qr-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--primary);
+            color: #0f0f0f;
+            border: none;
+            padding: 0.85rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: transform var(--transition-fast), background var(--transition-fast);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .qr-btn:hover {
+            transform: translateY(-2px);
+            background: var(--primary-dark);
+        }
+
+        .qr-btn.secondary {
+            background: transparent;
+            color: var(--text-white);
+            border: 1px solid var(--border-gold);
+        }
+
+        .qr-btn.secondary:hover {
+            background: rgba(244, 175, 37, 0.1);
+        }
+
+        .qr-base-url {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-dark-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            color: var(--text-light);
+            font-family: var(--font-typewriter);
+            font-size: 0.85rem;
+            word-break: break-all;
+        }
+
+        .qr-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .qr-card {
+            background: #ffffff;
+            border-radius: var(--radius-md);
+            padding: 1.5rem 1.25rem 1.25rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: var(--shadow-card);
+            break-inside: avoid;
+            page-break-inside: avoid;
+        }
+
+        .qr-card-title {
+            font-family: var(--font-stencil);
+            font-size: 1.4rem;
+            color: #0f0f0f;
+            letter-spacing: 0.06em;
+            margin-bottom: 1rem;
+        }
+
+        .qr-code-wrap {
+            background: #ffffff;
+            padding: 0.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .qr-code-wrap canvas,
+        .qr-code-wrap img {
+            display: block;
+            width: 200px !important;
+            height: 200px !important;
+        }
+
+        .qr-card-url {
+            font-family: var(--font-typewriter);
+            font-size: 0.75rem;
+            color: #555;
+            word-break: break-all;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .qr-card-actions {
+            display: flex;
+            gap: 0.5rem;
+            width: 100%;
+        }
+
+        .qr-card-btn {
+            flex: 1;
+            background: #0f0f0f;
+            color: #ffffff;
+            border: none;
+            padding: 0.55rem 0.75rem;
+            border-radius: 6px;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: background var(--transition-fast);
+        }
+
+        .qr-card-btn:hover {
+            background: var(--primary);
+            color: #0f0f0f;
+        }
+
+        .qr-card-btn.copied {
+            background: #22c55e;
+            color: #ffffff;
+        }
+
+        .qr-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .qr-back:hover {
+            color: var(--primary);
+        }
+
+        /* ===== PRINT STYLES ===== */
+        @media print {
+            @page {
+                size: letter;
+                margin: 0.4in;
+            }
+
+            body {
+                background: #ffffff !important;
+                color: #000000 !important;
+            }
+
+            .qr-page {
+                padding: 0 !important;
+                background: #ffffff !important;
+            }
+
+            .qr-header,
+            .qr-back,
+            .qr-controls,
+            .qr-card-actions {
+                display: none !important;
+            }
+
+            .qr-grid {
+                display: block !important;
+                max-width: none;
+            }
+
+            .qr-card {
+                background: #ffffff !important;
+                box-shadow: none !important;
+                border: 1px solid #000 !important;
+                page-break-after: always;
+                break-after: page;
+                padding: 2rem;
+                min-height: 9in;
+                justify-content: center;
+            }
+
+            .qr-card:last-child {
+                page-break-after: auto;
+            }
+
+            .qr-card-title {
+                font-size: 3rem;
+                margin-bottom: 2rem;
+            }
+
+            .qr-code-wrap canvas,
+            .qr-code-wrap img {
+                width: 400px !important;
+                height: 400px !important;
+            }
+
+            .qr-card-url {
+                font-size: 1rem;
+                margin-top: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="qr-page">
+        <div class="qr-header">
+            <a href="/menu.html" class="qr-back"><i class="fas fa-arrow-left"></i> Back to Menu</a>
+            <h1>Menu QR Codes</h1>
+            <p>Scan or share to jump straight to a menu section. Click <strong>Print All</strong> for a print-ready,
+                one-per-page layout.</p>
+            <div class="qr-base-url" id="qr-base-url">—</div>
+            <div class="qr-controls">
+                <button class="qr-btn" id="qr-print-btn"><i class="fas fa-print"></i> Print All</button>
+                <button class="qr-btn secondary" id="qr-copy-all-btn"><i class="fas fa-link"></i> Copy All Links</button>
+            </div>
+        </div>
+
+        <div class="qr-grid" id="qr-grid"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    <script>
+        const CATEGORIES = [
+            { label: 'Bites', hash: 'bites' },
+            { label: 'Wings', hash: 'wings' },
+            { label: 'Tenders', hash: 'tenders' },
+            { label: 'Sandwiches', hash: 'sandwiches' },
+            { label: 'Mini Tacos', hash: 'tacos' },
+            { label: 'On Tap', hash: 'ontap' },
+            { label: 'Cocktails', hash: 'cocktails' },
+            { label: 'Beer', hash: 'beer' },
+            { label: 'Salads', hash: 'salads' },
+            { label: 'Kids', hash: 'kids' },
+            { label: 'Desserts', hash: 'desserts' },
+        ];
+
+        const baseUrl = `${window.location.origin}/menu.html`;
+        document.getElementById('qr-base-url').textContent = baseUrl;
+
+        const grid = document.getElementById('qr-grid');
+
+        CATEGORIES.forEach(cat => {
+            const fullUrl = `${baseUrl}#${cat.hash}`;
+
+            const card = document.createElement('div');
+            card.className = 'qr-card';
+            card.innerHTML = `
+                <h2 class="qr-card-title">${cat.label}</h2>
+                <div class="qr-code-wrap" data-url="${fullUrl}"></div>
+                <div class="qr-card-url">${fullUrl}</div>
+                <div class="qr-card-actions">
+                    <button class="qr-card-btn copy-btn" data-url="${fullUrl}"><i class="fas fa-copy"></i> Copy</button>
+                    <button class="qr-card-btn download-btn" data-label="${cat.label}"><i class="fas fa-download"></i> PNG</button>
+                </div>
+            `;
+            grid.appendChild(card);
+
+            const qrWrap = card.querySelector('.qr-code-wrap');
+            new QRCode(qrWrap, {
+                text: fullUrl,
+                width: 200,
+                height: 200,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.H,
+            });
+        });
+
+        // Copy single link
+        grid.addEventListener('click', async (e) => {
+            const copyBtn = e.target.closest('.copy-btn');
+            if (copyBtn) {
+                const url = copyBtn.dataset.url;
+                try {
+                    await navigator.clipboard.writeText(url);
+                    const originalHtml = copyBtn.innerHTML;
+                    copyBtn.classList.add('copied');
+                    copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied';
+                    setTimeout(() => {
+                        copyBtn.classList.remove('copied');
+                        copyBtn.innerHTML = originalHtml;
+                    }, 1800);
+                } catch {
+                    alert(url);
+                }
+                return;
+            }
+
+            const downloadBtn = e.target.closest('.download-btn');
+            if (downloadBtn) {
+                const card = downloadBtn.closest('.qr-card');
+                const label = downloadBtn.dataset.label;
+                // qrcode.js renders into a canvas (preferred) and a fallback img
+                const canvas = card.querySelector('.qr-code-wrap canvas');
+                const img = card.querySelector('.qr-code-wrap img');
+                const dataUrl = canvas ? canvas.toDataURL('image/png') : (img ? img.src : null);
+                if (!dataUrl) return;
+                const link = document.createElement('a');
+                link.href = dataUrl;
+                link.download = `wingsntaps-${label.toLowerCase().replace(/\s+/g, '-')}-qr.png`;
+                link.click();
+            }
+        });
+
+        // Print
+        document.getElementById('qr-print-btn').addEventListener('click', () => {
+            window.print();
+        });
+
+        // Copy all links
+        document.getElementById('qr-copy-all-btn').addEventListener('click', async (e) => {
+            const lines = CATEGORIES.map(c => `${c.label}: ${baseUrl}#${c.hash}`).join('\n');
+            try {
+                await navigator.clipboard.writeText(lines);
+                const btn = e.currentTarget;
+                const original = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(() => { btn.innerHTML = original; }, 1800);
+            } catch {
+                alert(lines);
+            }
+        });
+    </script>
+</body>
+
+</html>
