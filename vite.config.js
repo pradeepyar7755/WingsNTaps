@@ -8,6 +8,7 @@ export default defineConfig({
                 main: resolve(__dirname, 'index.html'),
                 menu: resolve(__dirname, 'menu.html'),
                 contact: resolve(__dirname, 'contact.html'),
+                qr: resolve(__dirname, 'qr.html'),
             }
         }
     }
