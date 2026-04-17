@@ -125,22 +125,83 @@ function initMenuCategoryNav() {
     }
   });
 
+  // Helper: scroll to a section id with sticky-bar offset
+  function scrollToSection(targetId, behavior = 'smooth') {
+    const target = document.getElementById(targetId);
+    if (!target) return false;
+    const offset = catBar.offsetHeight + (document.getElementById('navbar')?.offsetHeight || 70) + 32 + 10;
+    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior });
+
+    catLinks.forEach(l => {
+      l.classList.toggle('active', l.getAttribute('href') === `#${targetId}`);
+    });
+    return true;
+  }
+
+  // Resolve short hash aliases (e.g., #wings → #sec-wings) and section ids
+  function resolveSectionId(rawHash) {
+    if (!rawHash) return null;
+    const id = rawHash.replace(/^#/, '').trim().toLowerCase();
+    if (!id) return null;
+    if (document.getElementById(id)) return id;
+    if (document.getElementById(`sec-${id}`)) return `sec-${id}`;
+    // Friendly aliases
+    const aliases = {
+      bites: 'sec-appetizers',
+      appetizers: 'sec-appetizers',
+      starters: 'sec-appetizers',
+      wings: 'sec-wings',
+      tenders: 'sec-tenders',
+      sandwiches: 'sec-sandwiches',
+      burgers: 'sec-sandwiches',
+      tacos: 'sec-tacos',
+      ontap: 'sec-ontap',
+      'on-tap': 'sec-ontap',
+      taps: 'sec-ontap',
+      draft: 'sec-ontap',
+      drafts: 'sec-ontap',
+      cocktails: 'sec-cocktails',
+      drinks: 'sec-cocktails',
+      beer: 'sec-beer',
+      beers: 'sec-beer',
+      salads: 'sec-salads',
+      kids: 'sec-kids',
+      desserts: 'sec-desserts',
+      dessert: 'sec-desserts',
+    };
+    return aliases[id] || null;
+  }
+
   // Click handling
   catLinks.forEach(link => {
     link.addEventListener('click', (e) => {
       e.preventDefault();
       const targetId = link.getAttribute('href').replace('#', '');
-      const target = document.getElementById(targetId);
-      if (target) {
-        const offset = catBar.offsetHeight + document.getElementById('navbar').offsetHeight + 32 + 10;
-        const top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
+      if (scrollToSection(targetId)) {
+        history.replaceState(null, '', `#${targetId}`);
       }
-
-      catLinks.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
     });
   });
+
+  // Deeplink: handle hash on initial load and hashchange
+  function handleHashNav(behavior) {
+    const resolved = resolveSectionId(window.location.hash);
+    if (!resolved) return;
+    // If the URL uses an alias, normalize it to the canonical section id
+    if (`#${resolved}` !== window.location.hash) {
+      history.replaceState(null, '', `#${resolved}`);
+    }
+    scrollToSection(resolved, behavior);
+  }
+
+  if (window.location.hash) {
+    // Let layout settle (fonts, images) before measuring offsets
+    window.addEventListener('load', () => {
+      setTimeout(() => handleHashNav('auto'), 50);
+    });
+  }
+  window.addEventListener('hashchange', () => handleHashNav('smooth'));
 
   // Scroll spy
   window.addEventListener('scroll', () => {
