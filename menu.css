@@ -295,11 +295,12 @@
 .menu-cat-link span {
     font-family: var(--font-condensed);
     font-weight: 900;
-    font-size: 0.9rem;
-    letter-spacing: 0.15em;
+    font-size: clamp(0.55rem, 2vw, 0.9rem);
+    letter-spacing: clamp(0.08em, 0.4vw, 0.15em);
     text-transform: uppercase;
     color: var(--text-muted);
     transition: color var(--transition-fast);
+    white-space: nowrap;
 }
 
 .menu-cat-link:hover span,
@@ -559,15 +560,6 @@
 
     .menu-cat-link {
         padding: 0.4rem 0.6rem;
-    }
-
-    .menu-cat-link span {
-        font-size: 0.6rem;
-    }
-
-    .menu-cat-link[data-cat="sandwiches"] span {
-        font-size: 0.5rem;
-        letter-spacing: 0.1em;
     }
 
     .menu-cats-arrow {
