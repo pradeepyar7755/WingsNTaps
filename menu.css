@@ -565,6 +565,11 @@
         font-size: 0.6rem;
     }
 
+    .menu-cat-link[data-cat="sandwiches"] span {
+        font-size: 0.5rem;
+        letter-spacing: 0.1em;
+    }
+
     .menu-cats-arrow {
         display: none;
     }
