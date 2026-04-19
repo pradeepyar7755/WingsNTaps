@@ -155,7 +155,6 @@ function initMenuCategoryNav() {
       tenders: 'sec-tenders',
       sandwiches: 'sec-sandwiches',
       burgers: 'sec-sandwiches',
-      tacos: 'sec-tacos',
       ontap: 'sec-ontap',
       'on-tap': 'sec-ontap',
       taps: 'sec-ontap',
