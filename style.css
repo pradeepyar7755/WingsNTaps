@@ -92,11 +92,13 @@ img {
   font-size: 0.8rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  overflow: hidden;
   white-space: nowrap;
   height: 32px;
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 1rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -104,24 +106,8 @@ img {
   z-index: 1001;
 }
 
-.ticker-track {
-  display: flex;
-  animation: marquee 40s linear infinite;
-}
-
 .ticker-content {
   flex-shrink: 0;
-  padding-right: 2rem;
-}
-
-@keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(-50%);
-  }
 }
 
 /* ===== NAVBAR ===== */
